@@ -1,0 +1,66 @@
+nomad_download_url: "https://releases.hashicorp.com"
+
+nomad_configs: {}
+
+nomad_user: root
+nomad_group: root
+
+nomad_dir: "/opt/nomad"
+nomad_dirs:
+  main:
+    path: "{{ nomad_dir }}"
+  configs:
+    path: "{{ nomad_dir }}/config.d"
+  certs:
+    path: "{{ nomad_dir }}/certs"
+    mode: "u=rwX,g=rX,o="
+  logs:
+    path: "/var/log/nomad"
+  data:
+    path: "/var/lib/nomad"
+    mode: "u=rwX,g=rX,o="
+
+nomad_service: |
+  #!/sbin/openrc-run
+  description="HashiCorp Nomad - a workload orchestrator"
+  user="{{ nomad_user }}"
+  group="{{ nomad_group }}"
+  supervisor="supervise-daemon"
+  pidfile="/run/${RC_SVCNAME}.pid"
+  command="/usr/bin/${RC_SVCNAME}"
+  command_args="agent -config={{ nomad_dirs.main.path }}/nomad.json -config={{ nomad_dirs.configs.path }}"
+  command_background="true"
+  stopsig=SIGINT
+  extra_started_commands="reload"
+  depend() {
+      need net
+  }
+  reload() {
+      ebegin "Reloading nomad"
+      ${supervisor} ${RC_SVCNAME} --signal HUP --pidfile "${PIDFILE}"
+      eend $?
+  }
+
+nomad_unit: |
+  [Unit]
+  Description="HashiCorp Nomad - a workload orchestrator"
+  Documentation=https://www.nomadproject.io/docs/
+  Requires=network-online.target
+  After=network-online.target
+  ConditionFileNotEmpty={{ nomad_dirs.main.path }}/nomad.json
+
+  [Service]
+  User={{ nomad_user }}
+  GROUP={{ nomad_group }}
+  ExecStart=/usr/bin/nomad agent -config {{ nomad_dirs.main.path }}/nomad.json -config={{ nomad_dirs.configs.path }}
+  ExecReload=/bin/kill --signal HUP $MAINPID
+  KillMode=process
+  KillSignal=SIGINT
+  Restart=on-failure
+  RestartSec=2
+  StartLimitIntervalSec=10
+  StartLimitBurst=3
+  TasksMax=infinity
+
+  [Install]
+  WantedBy=multi-user.target

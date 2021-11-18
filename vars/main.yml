@@ -1,0 +1,13 @@
+_arch_map:
+  amd64: amd64
+  x86_64: amd64
+  armv6l: armhfv6
+  armv7l: armhfv6
+  aarch64: arm64
+  64-bit: amd64
+_arch: "{{ _arch_map[ansible_architecture] }}"
+
+_archive: "nomad_{{ nomad_version }}_linux_{{ _arch }}.zip"
+_archive_url: "{{ nomad_download_url }}/nomad/{{ nomad_version }}/{{ _archive }}"
+_archive_checksum: "{{ nomad_download_url }}/nomad/{{ nomad_version }}/nomad_{{ nomad_version }}_SHA256SUMS"
+_archive_dir: "/tmp/{{ _archive | splitext | first }}"

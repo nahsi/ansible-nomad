@@ -1,0 +1,35 @@
+- name: Install nomad
+  become: true
+  hosts: all
+  vars:
+    nomad_version: "1.2.0"
+
+    nomad_config:
+      datacenter: "dev"
+      data_dir: "/var/lib/nomad/"
+
+      bind_addr: !unsafe '{{ GetInterfaceIP "eth1" }}'
+      addresses:
+        http: "0.0.0.0"
+        rpc: "0.0.0.0"
+        serf: "0.0.0.0"
+
+      client:
+        enabled: true
+        server_join:
+          retry_join:
+            - "127.0.0.1"
+          retry_max: 3
+          retry_interval: "15s"
+
+      server:
+        enabled: true
+        bootstrap_expect: 1
+        raft_protocol: 3
+
+    nomad_configs:
+      log_level:
+        log_level: "info"
+
+  roles:
+    - ansible-nomad

@@ -1,0 +1,28 @@
+galaxy_info:
+  author: Anatoly Laskaris
+  description: Nomad role
+  license: MIT
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Alpine
+      versions:
+        - all
+    - name: Gentoo
+      versions:
+        - all
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Ubuntu
+      versions:
+        - focal
+
+  galaxy_tags:
+    - cloud
+    - system
+    - hashicorp
+    - nomad
+
+  dependencies: []

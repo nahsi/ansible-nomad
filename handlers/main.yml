@@ -1,0 +1,11 @@
+- name: restart nomad
+  service:
+    name: nomad
+    state: restarted
+  when: not lookup("env", "PACKER_BUILD_NAME") | default("")
+
+- name: reload nomad
+  service:
+    name: nomad
+    state: reloaded
+  when: not lookup("env", "PACKER_BUILD_NAME") | default("")

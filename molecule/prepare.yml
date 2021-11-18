@@ -1,0 +1,17 @@
+- name: Prepare
+  become: true
+  hosts: all
+  tasks:
+    - name: create nomad directories
+      file:
+        path: "{{ item }}"
+        state: directory
+      loop:
+        - /opt/nomad/config.d
+
+    - name: create dummy files
+      file:
+        path: "{{ item }}"
+        state: touch
+      loop:
+        - /opt/nomad/config.d/dummy.json
