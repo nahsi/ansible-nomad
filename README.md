@@ -78,6 +78,8 @@ nomad_dirs:
 #### `nomad_unitfile`
 - systemd unit file
 - default: see [defaults/main.yml](defaults/main.yml)
+#### `skip_handlers`
+- skipt consul restart/reload - useful when building images with packer
 
 ## Tags
 * `config` - update nomad unit/service file and sync configuration files
