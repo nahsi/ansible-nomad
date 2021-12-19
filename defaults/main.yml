@@ -1,3 +1,5 @@
+skip_handlers: false
+
 nomad_download_url: "https://releases.hashicorp.com"
 
 nomad_configs: {}
