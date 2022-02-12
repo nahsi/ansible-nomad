@@ -5,8 +5,8 @@ driver:
 
 platforms:
   - &node
-    name: ubuntu
-    box: generic/ubuntu2004
+    name: gentoo
+    box: generic/gentoo
     memory: 512
     cpu: 1
     provider_raw_config_args:

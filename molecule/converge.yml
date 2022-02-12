@@ -2,13 +2,13 @@
   become: true
   hosts: all
   vars:
-    nomad_version: "1.2.0"
+    nomad_version: "1.2.6"
 
     nomad_config:
       datacenter: "dev"
       data_dir: "/var/lib/nomad/"
 
-      bind_addr: !unsafe '{{ GetInterfaceIP "eth1" }}'
+      bind_addr: !unsafe '{{ GetPrivateIP }}'
       addresses:
         http: "0.0.0.0"
         rpc: "0.0.0.0"
