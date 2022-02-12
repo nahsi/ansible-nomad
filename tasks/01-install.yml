@@ -28,20 +28,19 @@
   delegate_to: localhost
   file:
     state: directory
-    path: "/tmp/ansible-nomad-{{ ansible_architecture }}"
-  register: _archive_dir
+    path: "{{ _archive_dir }}"
 
 - name: unpack nomad
   become: false
-  run_once: true
   delegate_to: localhost
   unarchive:
     src: "{{ role_path }}/files/{{ _archive }}"
-    dest: "{{ _archive_dir.path }}"
+    dest: "{{ _archive_dir }}"
+    creates: "{{ _archive_dir }}/nomad"
 
 - name: propagate nomad binary
   copy:
-    src: "{{ _archive_dir.path }}/nomad"
+    src: "{{ _archive_dir }}/nomad"
     dest: "/usr/bin/nomad"
     owner: root
     group: root
@@ -50,10 +49,9 @@
 
 - name: delete archive directory
   become: false
-  run_once: true
   delegate_to: localhost
   file:
-    dest: "{{ _archive_dir.path }}"
+    dest: "{{ _archive_dir }}"
     state: absent
   when: not lookup("env", "MOLECULE_SCENARIO_NAME") | default("")
 
