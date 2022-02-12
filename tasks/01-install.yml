@@ -33,7 +33,6 @@
 
 - name: unpack nomad
   become: false
-  run_once: true
   delegate_to: localhost
   unarchive:
     src: "{{ role_path }}/files/{{ _archive }}"
