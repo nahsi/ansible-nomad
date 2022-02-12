@@ -1,6 +1,6 @@
 # Nomad
 
-Install, configure and maintain [nomad](https://www.nomadproject.io) - a
+Install, configure and maintain [Nomad](https://www.nomadproject.io) - a
 workload orchestrator from HashiCorp.
 
 ## Role Philosophy
@@ -84,7 +84,7 @@ nomad_dirs:
 
 ## Tags
 
-- `config` - update nomad unit/service file and sync configuration files
+- `config` - update Nomad unit/service file and sync configuration files
 
 ## Author
 
