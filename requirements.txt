@@ -3,6 +3,6 @@ jmespath==0.10.0
 python-vagrant==0.5.15
 pytest==6.2.5
 pytest-testinfra==6.5.0
-molecule==3.5.2
+molecule==3.6.0
 molecule[lint]==3.5.2
 molecule-vagrant==1.0.0
