@@ -1,7 +1,6 @@
 import testinfra.utils.ansible_runner
 import pytest
 import os
-import json
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
         os.environ["MOLECULE_INVENTORY_FILE"]).get_hosts("all")
@@ -10,7 +9,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 @pytest.mark.parametrize("dirs", [
     "/opt/nomad/",
     "/opt/nomad/config.d/",
-    "/var/lib/nomad/"
+    "/var/lib/nomad/",
 ])
 def test_directories_creation(host, dirs):
     d = host.file(dirs)
@@ -27,12 +26,18 @@ def test_file_creation(host, files):
     assert f.exists
     assert f.is_file
 
+
 @pytest.mark.parametrize("files", [
     "/opt/nomad/config.d/dummy.json",
 ])
 def test_file_sync(host, files):
     f = host.file(files)
     assert not f.exists
+
+
+def test_user(host):
+    assert host.group("nomad").exists
+    assert host.user("nomad").exists
 
 
 @pytest.mark.parametrize("service", [
@@ -46,7 +51,7 @@ def test_service_is_running(host, service):
 
 
 @pytest.mark.parametrize("port", [
-    "4646"
+    "8200",
 ])
 def test_socket(host, port):
     s = host.socket("tcp://127.0.0.1:{}".format(port))
