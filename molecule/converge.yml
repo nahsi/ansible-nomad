@@ -8,7 +8,7 @@
       datacenter: "dev"
       data_dir: "/var/lib/nomad/"
 
-      bind_addr: !unsafe '{{ GetPrivateIp }}'
+      bind_addr: !unsafe '{{ GetPrivateIP }}'
       addresses:
         http: "0.0.0.0"
         rpc: "0.0.0.0"
