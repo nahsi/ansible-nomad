@@ -9,11 +9,6 @@ platforms:
     box: generic/ubuntu2004
     memory: 512
     cpu: 1
-    interfaces: &interfaces
-      - auto_config: true
-        network_name: private_network
-        type: static
-        ip: 192.168.56.1
     provider_raw_config_args:
       - "customize ['modifyvm', :id, '--uartmode1', 'disconnected']"
 
