@@ -38,6 +38,7 @@
   unarchive:
     src: "{{ role_path }}/files/{{ _archive }}"
     dest: "{{ _archive_dir.path }}"
+    creates: "{{ _archive_dir }}/nomad"
 
 - name: propagate nomad binary
   copy:
