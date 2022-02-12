@@ -51,7 +51,7 @@ def test_service_is_running(host, service):
 
 
 @pytest.mark.parametrize("port", [
-    "8200",
+    "4646",
 ])
 def test_socket(host, port):
     s = host.socket("tcp://127.0.0.1:{}".format(port))
