@@ -1,7 +1,8 @@
 galaxy_info:
   namespace: nahsi
   author: Anatoly Laskaris
-  description: Nomad role
+  description: Manage HashiCorp Nomad
+  role_name: nomad
   license: MIT
   min_ansible_version: 2.10
 
