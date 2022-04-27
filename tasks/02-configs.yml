@@ -2,7 +2,6 @@
   tags: config
   find:
     paths: "{{ nomad_dirs.configs.path }}"
-    exclude: "*_vault.json"
     recurse: true
   register: _configs_present
 
