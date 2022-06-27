@@ -1,4 +1,4 @@
-ansible==5.8.0
+ansible==6.0.0
 jmespath==1.0.0
 python-vagrant==1.0.0
 pytest==7.1.2
