@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/nahsi/ansible-nomad/compare/v1.0.1...v1.0.2) (2022-07-31)
+
+
+### Bug Fixes
+
+* default nomad systemd unitfile ([#47](https://github.com/nahsi/ansible-nomad/issues/47)) ([6fdb266](https://github.com/nahsi/ansible-nomad/commit/6fdb266adfa4b931ece529551db4e22248621e2c))
+
 ### [1.0.1](https://github.com/nahsi/ansible-nomad/compare/v1.0.0...v1.0.1) (2022-04-27)
 
 
