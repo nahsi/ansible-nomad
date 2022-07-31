@@ -9,6 +9,8 @@ nomad_group: root
 
 nomad_dir: "/opt/nomad"
 nomad_dirs:
+  main:
+    path: "{{ nomad_dir }}"
   configs:
     path: "{{ nomad_dir }}/config.d"
   certs:
@@ -28,7 +30,7 @@ nomad_service: |
   supervisor="supervise-daemon"
   pidfile="/run/${RC_SVCNAME}.pid"
   command="/usr/bin/${RC_SVCNAME}"
-  command_args="agent -config={{ nomad_dir }}/nomad.json -config={{ nomad_dirs.configs.path }}"
+  command_args="agent -config={{ nomad_dirs.main.path }}/nomad.json -config={{ nomad_dirs.configs.path }}"
   command_background="true"
   stopsig=SIGINT
   extra_started_commands="reload"
@@ -47,12 +49,12 @@ nomad_unit: |
   Documentation=https://www.nomadproject.io/docs/
   Requires=network-online.target
   After=network-online.target
-  ConditionFileNotEmpty={{ nomad_dir }}/nomad.json
+  ConditionFileNotEmpty={{ nomad_dirs.main.path }}/nomad.json
 
   [Service]
   User={{ nomad_user }}
   GROUP={{ nomad_group }}
-  ExecStart=/usr/bin/nomad agent -config {{ nomad_dir.path }}/nomad.json -config={{ nomad_dirs.configs.path }}
+  ExecStart=/usr/bin/nomad agent -config {{ nomad_dirs.main.path }}/nomad.json -config={{ nomad_dirs.configs.path }}
   ExecReload=/bin/kill --signal HUP $MAINPID
   KillMode=process
   KillSignal=SIGINT
