@@ -77,7 +77,7 @@
   tags: config
   copy:
     content: "{{ nomad_config | to_nice_json }}"
-    dest: "{{ nomad_dirs.main.path }}/nomad.json"
+    dest: "{{ nomad_dir }}/nomad.json"
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0640
