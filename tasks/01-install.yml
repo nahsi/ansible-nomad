@@ -63,7 +63,7 @@
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0640
-    validate: "nomad config validate -config-format=json %s"
+    validate: "nomad config validate %s"
   notify: restart nomad
 
 - name: create nomad service file
