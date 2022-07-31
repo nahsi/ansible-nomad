@@ -2,7 +2,7 @@
   become: true
   hosts: all
   vars:
-    nomad_version: "1.2.6"
+    nomad_version: "1.3.2"
 
     nomad_config:
       datacenter: "dev"
