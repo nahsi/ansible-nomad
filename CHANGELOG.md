@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/nahsi/ansible-nomad/compare/v1.0.2...v2.0.0) (2022-07-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* Validate config before copy (#48)
+
+### Features
+
+* Validate config before copy ([#48](https://github.com/nahsi/ansible-nomad/issues/48)) ([871ee41](https://github.com/nahsi/ansible-nomad/commit/871ee415026f9187b024b18351e2decefc614e8b))
+
 ## [1.0.2](https://github.com/nahsi/ansible-nomad/compare/v1.0.1...v1.0.2) (2022-07-31)
 
 
