@@ -14,6 +14,7 @@
     owner: "{{ nomad_user }}"
     group: "{{ nomad_group }}"
     mode: 0640
+    validate: "nomad config validate {{ nomad_dirs.main.path }}/nomad.json %s"
   notify: restart nomad
   loop: "{{ nomad_configs | dict2items }}"
   loop_control:
