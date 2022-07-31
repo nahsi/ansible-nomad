@@ -11,6 +11,23 @@
   retries: 5
   delay: 2
 
+- name: create vault-agent system group
+  group:
+    name: "{{ nomad_group }}"
+    system: true
+    state: present
+  when: nomad_group != "root"
+
+- name: create vault-agent system user
+  user:
+    name: "{{ nomad_user }}"
+    system: true
+    shell: "/sbin/nologin"
+    group: "{{ nomad_group }}"
+    create_home: false
+    state: present
+  when: nomad_group != "root"
+
 - name: create nomad directories
   file:
     path: "{{ dir.value.path }}"
