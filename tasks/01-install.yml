@@ -35,7 +35,6 @@
     owner: "{{ dir.group | default(nomad_user) }}"
     group: "{{ dir.group | default(nomad_group) }}"
     mode: "{{ dir.value.mode | default(755) }}"
-    recurse: true
   loop: "{{ nomad_dirs | dict2items }}"
   loop_control:
     loop_var: dir
