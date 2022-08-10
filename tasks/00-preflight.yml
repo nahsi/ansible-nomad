@@ -73,3 +73,10 @@
       - nomad_unit | length
     quiet: true
   when: ansible_service_mgr == "systemd"
+
+- name: set checksum for {{ _arch }} architecture
+  set_fact:
+    _archive_checksum: "{{ item.split(' ')[0] }}"
+  with_items: "{{ _checksums }}"
+  when:
+    - "('linux_' + _arch + '.zip') in item"
