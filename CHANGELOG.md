@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/nahsi/ansible-nomad/compare/v1.0.2...v2.0.0) (2022-08-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Create Nomad user and group (#46)
+* Validate config before copy (#48)
+
+### Features
+
+* Create Nomad user and group ([#46](https://github.com/nahsi/ansible-nomad/issues/46)) ([98e452b](https://github.com/nahsi/ansible-nomad/commit/98e452b086c36ee1c5263d81a1e147fe95f30343))
+* Validate config before copy ([#48](https://github.com/nahsi/ansible-nomad/issues/48)) ([871ee41](https://github.com/nahsi/ansible-nomad/commit/871ee415026f9187b024b18351e2decefc614e8b))
+
+
+### Bug Fixes
+
+* Set checksum with preflight task ([#58](https://github.com/nahsi/ansible-nomad/issues/58)) ([288d091](https://github.com/nahsi/ansible-nomad/commit/288d091234264d4a8f0583952532468426f5325d))
+
 ## [1.0.2](https://github.com/nahsi/ansible-nomad/compare/v1.0.1...v1.0.2) (2022-07-31)
 
 
