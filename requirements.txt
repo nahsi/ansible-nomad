@@ -1,7 +1,7 @@
 ansible==6.5.0
 jmespath==1.0.1
 python-vagrant==1.0.0
-pytest==7.2.0
+pytest==7.4.4
 pytest-testinfra==6.8.0
-molecule==4.0.3
+molecule==4.0.4
 molecule-vagrant==1.0.0
