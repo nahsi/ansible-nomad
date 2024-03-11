@@ -79,7 +79,12 @@ nomad_dirs:
 
 #### `skip_handlers`
 
-- skipt consul restart/reload - useful when building images with packer
+- skip nomad restart/reload - useful when building images with packer
+- default: `false`
+
+#### `skip_enable`
+
+- skip enabling service - useful when building images with packer
 - default: `false`
 
 ## Tags

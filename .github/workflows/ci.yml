@@ -40,7 +40,7 @@ jobs:
 
   molecule:
     name: "molecule tests"
-    runs-on: macos-10.15
+    runs-on: macos-latest
 
     needs: lint
 
@@ -51,7 +51,6 @@ jobs:
       matrix:
         scenario:
           - ubuntu
-          - gentoo
 
     steps:
       - uses: actions/checkout@v3

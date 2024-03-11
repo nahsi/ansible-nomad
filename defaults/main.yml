@@ -1,4 +1,5 @@
 skip_handlers: false
+skip_enable: false
 
 nomad_download_url: "https://releases.hashicorp.com"
 
@@ -21,27 +22,6 @@ nomad_dirs:
   data:
     path: "/var/lib/nomad"
     mode: "u=rwX,g=rX,o="
-
-nomad_service: |
-  #!/sbin/openrc-run
-  description="HashiCorp Nomad - a workload orchestrator"
-  user="{{ nomad_user }}"
-  group="{{ nomad_group }}"
-  supervisor="supervise-daemon"
-  pidfile="/run/${RC_SVCNAME}.pid"
-  command="/usr/bin/${RC_SVCNAME}"
-  command_args="agent -config={{ nomad_dirs.main.path }}/nomad.json -config={{ nomad_dirs.configs.path }}"
-  command_background="true"
-  stopsig=SIGINT
-  extra_started_commands="reload"
-  depend() {
-      need net
-  }
-  reload() {
-      ebegin "Reloading nomad"
-      ${supervisor} ${RC_SVCNAME} --signal HUP --pidfile "${PIDFILE}"
-      eend $?
-  }
 
 nomad_unit: |
   [Unit]

@@ -54,16 +54,6 @@
       - nomad_configs is mapping
     quiet: true
 
-- name: check "nomad_service" variable
-  tags: always
-  assert:
-    that:
-      - nomad_service is defined
-      - nomad_service is string
-      - nomad_service | length
-    quiet: true
-  when: ansible_service_mgr == "openrc"
-
 - name: check "nomad_unit" variable
   tags: always
   assert:
@@ -72,7 +62,6 @@
       - nomad_unit is string
       - nomad_unit | length
     quiet: true
-  when: ansible_service_mgr == "systemd"
 
 - name: set checksum for {{ _arch }} architecture
   set_fact:

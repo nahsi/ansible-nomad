@@ -83,23 +83,6 @@
     validate: "nomad config validate %s"
   notify: restart nomad
 
-- name: create nomad service file
-  tags: config
-  copy:
-    content: "{{ nomad_service }}"
-    dest: "/etc/init.d/nomad"
-    owner: root
-    group: root
-    mode: 0755
-  notify: restart nomad
-  when: ansible_service_mgr == "openrc"
-
-- name: enable nomad
-  service:
-    name: nomad
-    enabled: true
-  when: ansible_service_mgr == "openrc"
-
 - name: create nomad unit file
   tags: config
   copy:
@@ -109,11 +92,10 @@
     group: root
     mode: 0755
   notify: restart nomad
-  when: ansible_service_mgr == "systemd"
 
 - name: enable nomad
   systemd:
     name: nomad
     enabled: true
     daemon_reload: true
-  when: ansible_service_mgr == "systemd"
+  when: not skip_enable
