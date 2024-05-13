@@ -18,7 +18,7 @@
     state: present
   when: nomad_group != "root"
 
-- name: create vault-agent system user
+- name: create nomad system user
   user:
     name: "{{ nomad_user }}"
     system: true
@@ -50,6 +50,7 @@
 - name: unpack nomad
   become: false
   delegate_to: localhost
+  run_once: true
   unarchive:
     src: "{{ role_path }}/files/{{ _archive }}"
     dest: "{{ _archive_dir }}"
@@ -67,6 +68,7 @@
 - name: delete archive directory
   become: false
   delegate_to: localhost
+  run_once: true
   file:
     dest: "{{ _archive_dir }}"
     state: absent
